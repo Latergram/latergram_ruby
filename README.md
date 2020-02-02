@@ -26,12 +26,12 @@ Or install it yourself as:
 api = Latergram::Api.new(api_key)
 ```
 
-### Social Posts
+### Publications
 
-#### Create a social post
+#### Create a publication
 
 ```ruby
-api.social_posts.create(
+api.publications.create(
   text: "example text",
   image_urls: [url1, url2]
 )
@@ -43,7 +43,7 @@ Response:
 {
   'data' => {
     'id' => '99',
-    'type' => 'social_post',
+    'type' => 'publication',
     'attributes' => {
       'text' => 'example text',
       'created_at' => '2019-10-30T23:54:12.147+01:00',
@@ -55,10 +55,10 @@ Response:
 }
 ```
 
-#### Update a social post
+#### Update a publication
 
 ```ruby
-api.social_posts.update(99, text: 'another text')
+api.publications.update(99, text: 'another text')
 ```
 
 Response:
@@ -67,7 +67,7 @@ Response:
 {
   'data' => {
     'id' => '99',
-    'type' => 'social_post',
+    'type' => 'publication',
     'attributes' => {
       'text' => 'another text',
       'created_at' => '2019-10-30T23:54:12.147+01:00',
@@ -79,10 +79,10 @@ Response:
 }
 ```
 
-#### Destroy a social post
+#### Destroy a publication
 
 ```ruby
-api.social_posts.destroy(99)
+api.publications.destroy(99)
 ```
 
 Response:
@@ -91,7 +91,7 @@ Response:
 {
   'data' => {
     'id' => '99',
-    'type' => 'social_post',
+    'type' => 'publication',
     'attributes' => {
       'text' => 'another text',
       'created_at' => '2019-10-30T23:54:12.147+01:00',
@@ -103,10 +103,10 @@ Response:
 }
 ```
 
-#### List all social posts
+#### List all publications
 
 ```ruby
-api.social_posts.all(page: 1, per_page: 10)
+api.publications.all(page: 1, per_page: 10)
 ```
 
 Response:
@@ -116,7 +116,7 @@ Response:
   'data' => [
     {
       'id' => '98',
-      'type' => 'social_post',
+      'type' => 'publication',
       'attributes' => {
         'text' => 'test1',
         'created_at' => '2019-10-30T20:54:14.960+01:00',
@@ -128,7 +128,7 @@ Response:
     # ...
     {
       'id' => '95',
-      'type' => 'social_post',
+      'type' => 'publication',
       'attributes' => {
         'text' => 'test2',
         'created_at' => '2019-10-29T22:46:35.857+01:00',
@@ -139,18 +139,18 @@ Response:
     }
   ],
   'links' => {
-    'first' => 'http://localhost/api/social_posts?page=1&per_page=10',
-    'last' => 'http://localhost/api/social_posts?page=26&per_page=10',
-    'next' => 'http://localhost/api/social_posts?page=2&per_page=10'
+    'first' => 'https://api.latergr.am/v1/publications?page=1&per_page=10',
+    'last' => 'https://api.latergr.am/v1/publications?page=26&per_page=10',
+    'next' => 'https://api.latergr.am/v1/publications?page=2&per_page=10'
   },
   'meta' => { 'total' => 51 }
 }
 ```
 
-#### Find one social post
+#### Find one publication
 
 ```ruby
-api.social_posts.find(95)
+api.publications.find(95)
 ```
 
 Response:
@@ -159,7 +159,7 @@ Response:
 {
   'data' => {
     'id' => '95',
-    'type' => 'social_post',
+    'type' => 'publication',
     'attributes' => {
       'text' => 'test2',
       'created_at' => '2019-10-29T22:46:35.857+01:00',

@@ -4,10 +4,10 @@ require 'latergram/requester'
 require 'time'
 
 module Latergram
-  class SocialPosts
+  class Publications
     attr_reader :api_key, :api_url
 
-    ENDPOINT = 'social_posts'
+    ENDPOINT = 'publications'
 
     def initialize(api_key, api_url:)
       @api_key = api_key
@@ -22,8 +22,8 @@ module Latergram
       JSON.parse(response.body)
     end
 
-    def find(social_post_id)
-      response = requester.get(ENDPOINT + "/#{social_post_id}")
+    def find(publication_id)
+      response = requester.get(ENDPOINT + "/#{publication_id}")
 
       raise Latergram::Error, response.body unless response.status == 200
 
@@ -33,7 +33,7 @@ module Latergram
     def create(text:, image_urls: [])
       check_images(image_urls)
 
-      parameters = { social_post: { text: text, image_urls: image_urls }.compact }
+      parameters = { publication: { text: text, image_urls: image_urls }.compact }
       response = requester.post(ENDPOINT, parameters)
 
       raise Latergram::Error, response.body unless response.status == 200
@@ -41,17 +41,17 @@ module Latergram
       JSON.parse(response.body)
     end
 
-    def update(social_post_id, text: nil)
-      parameters = { social_post: { text: text }.compact }
-      response = requester.put(ENDPOINT + "/#{social_post_id}", parameters)
+    def update(publication_id, text: nil)
+      parameters = { publication: { text: text }.compact }
+      response = requester.put(ENDPOINT + "/#{publication_id}", parameters)
 
       raise Latergram::Error, response.body unless response.status == 200
 
       JSON.parse(response.body)
     end
 
-    def destroy(social_post_id)
-      response = requester.delete(ENDPOINT + "/#{social_post_id}")
+    def destroy(publication_id)
+      response = requester.delete(ENDPOINT + "/#{publication_id}")
 
       raise Latergram::Error, response.body unless response.status == 200
 

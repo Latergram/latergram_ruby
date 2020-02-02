@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'latergram/social_posts'
+require 'latergram/publications'
 
 module Latergram
   class Api
@@ -13,8 +13,8 @@ module Latergram
       @api_url = api_url
     end
 
-    def social_posts
-      @social_posts ||= SocialPosts.new(api_key, api_url: api_url)
+    def publications
+      @publications ||= Publications.new(api_key, api_url: api_url)
     end
   end
 end
