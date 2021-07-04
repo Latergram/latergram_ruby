@@ -30,10 +30,10 @@ module Latergram
       JSON.parse(response.body)
     end
 
-    def create(text:, image_urls: [])
-      check_images(image_urls)
+    def create(text:, images: nil)
+      check_images(images) if images
 
-      parameters = { publication: { text: text, image_urls: image_urls }.compact }
+      parameters = { publication: { text: text, images: images }.compact }
       response = requester.post(ENDPOINT, parameters)
 
       raise Latergram::Error, response.body unless response.status == 200
@@ -60,8 +60,14 @@ module Latergram
 
     private
 
-    def check_images(image_urls)
-      raise(Latergram::Error, 'image_urls must be array') unless image_urls.is_a?(Array)
+    def check_images(images)
+      raise(Latergram::Error, 'images must be array') unless images.is_a?(Array)
+      return if images.all? { |image| image.key?(:data) && image.key?(:filename) && image.key?(:content_type) }
+
+      raise(
+        Latergram::Error,
+        'images must contain the following attributes: data (base64 encoded image), filename and content_type'
+      )
     end
 
     def requester
