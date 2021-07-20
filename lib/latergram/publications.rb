@@ -30,8 +30,8 @@ module Latergram
       JSON.parse(response.body)
     end
 
-    def create(text:, images: nil)
-      check_images(images) if images
+    def create(text:, images:)
+      check_images(images)
 
       parameters = { publication: { text: text, images: images }.compact }
       response = requester.post(ENDPOINT, parameters)
@@ -62,6 +62,8 @@ module Latergram
 
     def check_images(images)
       raise(Latergram::Error, 'images must be array') unless images.is_a?(Array)
+      raise(Latergram::Error, 'images cannot be empty') if images.empty?
+
       return if images.all? { |image| image.key?(:data) && image.key?(:filename) && image.key?(:content_type) }
 
       raise(

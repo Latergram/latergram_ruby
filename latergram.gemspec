@@ -12,12 +12,12 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Latergram API Client'
   spec.description   = 'Latergram API Client'
-  #spec.homepage      = ''
+  # spec.homepage      = ''
   spec.license       = 'MIT'
 
-  #spec.metadata['homepage_uri'] = spec.homepage
-  #spec.metadata['source_code_uri'] = ''
-  #spec.metadata['changelog_uri'] = ''
+  # spec.metadata['homepage_uri'] = spec.homepage
+  # spec.metadata['source_code_uri'] = ''
+  # spec.metadata['changelog_uri'] = ''
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
