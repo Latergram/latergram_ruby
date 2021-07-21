@@ -31,9 +31,11 @@ api = Latergram::Api.new(api_key)
 #### Create a publication
 
 ```ruby
+image1 = { data: Base64.encode64(image.download), filename: 'image.jpeg', content_type: 'image/jpeg' }
+
 api.publications.create(
   text: "example text",
-  image_urls: [url1, url2]
+  image_urls: [image1, image2]
 )
 ```
 
